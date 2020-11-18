@@ -49,15 +49,10 @@ def main():
     dig(query, root=root_node)
 
     while funnel_queue:
-        try:
-            for index, word_dict in enumerate(funnel_queue):
-                # finds direct descendants of all words in funnel queue
-                funnel_queue.pop(index)
-                dig(word_dict["word"], parent=word_dict["parent_node"])
-        except RuntimeError:
-            # funnel_queue is subject to change during iteration; when this behavior inevitably causes a RuntimeError,
-            # the exception is effectively ignored and the program continues to iterate over funnel_queue
-            continue
+        for index, word_dict in enumerate(funnel_queue):
+            # finds direct descendants of all words in funnel queue
+            funnel_queue.pop(index)
+            dig(word_dict["word"], parent=word_dict["parent_node"])
 
     print(f"Longest funnel length: {(root_node.height + 1) if root_node.height > 0 else 0}\n"
           f"\n"

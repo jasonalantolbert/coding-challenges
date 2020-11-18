@@ -8,7 +8,7 @@ class Node:
         self.right = right
 
 
-def serialize(node):
+def serialize(node: Node):
     def serializer(node, parent, direction):
         string = f"{parent}{f'{direction}' if direction else ''} = {node.val}\n"
         parent = f"{parent}{direction}"
@@ -23,13 +23,10 @@ def serialize(node):
     queue = [{"node": node, "parent": node.val, "direction": ""}]
 
     while queue:
-        try:
-            for index, node_dict in enumerate(queue):
-                queue.pop(index)
-                string += serializer(node_dict["node"], parent=node_dict["parent"],
-                                     direction=node_dict["direction"])
-        except RuntimeError:
-            continue
+        for index, node_dict in enumerate(queue):
+            queue.pop(index)
+            string += serializer(node_dict["node"], node_dict["parent"],
+                                 node_dict["direction"])
 
     return string
 
@@ -37,7 +34,7 @@ def serialize(node):
 def deserialize(s: str):
     instructions = s.split("\n")
     root_name = re.findall("\w+\s=", instructions.pop(0))[0].replace(" =", "")
-    root = Node(f"'{root_name}'")
+    root = Node(f"{root_name}")
     for instruction in instructions[:-1]:
         node, value = instruction.split(" = ")
         try:
@@ -45,7 +42,7 @@ def deserialize(s: str):
         except ValueError:
             node_name, node_attr = re.findall("(?:\w+\.)+|\w+$", node)
             node_name = node_name.rstrip(".")
-        node_name = node_name.replace(root_name, "root")
+        node_name = re.sub(f"^{root_name}", "root", node_name)
         setattr(eval(node_name), node_attr, Node(value))
 
     return root
