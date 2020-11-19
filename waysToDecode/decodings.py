@@ -18,7 +18,7 @@ encs_found = set()
 
 # finds all encodings in the message
 for i in itertools.permutations(split_msg, r=2):
-    # for every length two permutation of split_msg, this for loop:
+    # for every two-length permutation of split_msg, this for loop
     # joins the permutation tuple and strips any leading zeros from the resulting string
     joined_i = "".join(i).lstrip("0")
     try:

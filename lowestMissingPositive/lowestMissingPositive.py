@@ -1,5 +1,5 @@
 def lowest_missing_positive(array):
-    for i in range(max(min([i for i in array if i > 0]), 1), max(array)):
+    for i in range(min([i for i in array if i > 0]), max(array)):
         if i not in array:
             return i
 
