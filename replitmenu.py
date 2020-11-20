@@ -5,6 +5,7 @@
 import os
 import random
 import re
+from unipath import Path
 
 rand_dir = random.choice([f.name for f in os.scandir() if f.is_dir() and f.name not in [".idea", ".git"]])
 rand_script = random.choice([f for f in os.listdir(rand_dir) if f.endswith(".py")])
@@ -15,6 +16,8 @@ path = input(f"\nType the file path of the Python script you wish to run (e.g. {
              "have to play around with things a bit (read: add print statements and/or unit tests yourself) "
              "in order to\n"
              "actually see what the code produces.\n"
+             "\n"
+             "Currently, unit tests will terminate the program after they run.\n"
              "\n"
              "File paths are not case sensisitve.\n"
              "\n"
@@ -37,20 +40,24 @@ while True:
     try:
         os.chdir(directory)
     except FileNotFoundError:
-        os.chdir("..")
         print("It seems that directory doesn't exist. Check your spelling, perhaps?")
         path = input("> ")
         continue
 
     try:
-        exec(open(script).read())
+        file = open(script).read()
     except FileNotFoundError:
         print("It seems that file doesn't exist. Check your spelling, " + ("perhaps?" if script.endswith("py") else
                                                                            "and don't forget the .py extension."))
-        os.chdir("..")
+        p = Path(os.getcwd())
+        os.chdir(p.parent)
         path = input("> ")
         continue
+    else:
+        print("\nBEGIN FILE EXECUTION\n")
+        exec(file)
 
-    os.chdir("..")
+    p = Path(os.getcwd())
+    os.chdir(p.parent)
     print("\nEND FILE EXECUTION\n")
-    path = input("If you'd like to run another file, enter it's path:\n> ")
+    path = input("If you'd like to run another file, enter its path:\n> ")
