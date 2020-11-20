@@ -21,7 +21,6 @@ path = input(f"\nType the file path of the Python script you wish to run (e.g. {
              "For more granular control over file execution, clone this repl's GitHub repository to your local "
              "machine.\n"
              "https://github.com/jasonalantolbert/coding-challenges\n"
-             ""
              "\n"
              "> ")
 
