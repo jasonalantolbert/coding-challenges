@@ -73,6 +73,6 @@ while True:
     print("\nEND FILE EXECUTION\n")
     previous = path
     path = input("If you'd like to run another file, enter its path (or leave blank to run the "
-                 "previous file again:\n> ")
+                 "previous file again):\n> ")
     if not path:
         path = previous
