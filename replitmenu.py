@@ -71,4 +71,8 @@ while True:
     p = Path(os.getcwd())
     os.chdir(p.parent)
     print("\nEND FILE EXECUTION\n")
-    path = input("If you'd like to run another file, enter its path:\n> ")
+    previous = path
+    path = input("If you'd like to run another file, enter its path (or leave blank to run the "
+                 "previous file again:\n> ")
+    if not path:
+        path = previous
