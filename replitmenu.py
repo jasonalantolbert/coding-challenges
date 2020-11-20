@@ -5,18 +5,27 @@
 import os
 import random
 import re
+
 from unipath import Path
 
-rand_dir = random.choice([
-    f.name for f in os.scandir()
-    if f.is_dir() and f.name not in [".idea", ".git"]
-])
-rand_script = random.choice(
-    [f for f in os.listdir(rand_dir) if f.endswith(".py")])
-example_path = f"{rand_dir}/{rand_script}"
+
+def get_example_path():
+    while True:
+        try:
+            rand_dir = random.choice([
+                f.name for f in os.scandir()
+                if f.is_dir() and f.name not in [".idea", ".git"]
+            ])
+            rand_script = random.choice(
+                [f for f in os.listdir(rand_dir) if f.endswith(".py")])
+        except IndexError:
+            continue
+
+        return f"{rand_dir}/{rand_script}"
+
 
 path = input(
-    f"\nType the file path of the Python script you wish to run (e.g. {example_path}).\n"
+    f"\nType the file path of the Python script you wish to run (e.g. {get_example_path()}).\n"
     "Not all scripts print output to the console and/or are accompanied by unit tests (yet), so you might\n"
     "have to play around with things a bit (read: add print statements and/or unit tests yourself) "
     "in order to\n"
@@ -38,7 +47,7 @@ while True:
     except ValueError:
         print(
             "It seems you entered an incorrectly-formatted file path. Make sure you're including both the directory\n"
-            f"name and file name, separated by a single forward or backward slash (e.g. {example_path})."
+            f"name and file name, separated by a single forward or backward slash (e.g. {get_example_path()})."
         )
         path = input("> ")
         continue
@@ -60,17 +69,15 @@ while True:
               ("perhaps? " if script.
                endswith(".py") else "and don't forget the .py extension.") +
               "\nRemember, on Repl.it, file paths are case sensitive.")
-        p = Path(os.getcwd())
-        os.chdir(p.parent)
+        os.chdir(Path(os.getcwd()).parent)
         path = input("> ")
         continue
     else:
-        print("\nBEGIN FILE EXECUTION\n")
+        print(f"\nBEGIN FILE EXECUTION ({script})\n")
         exec(file)
 
-    p = Path(os.getcwd())
-    os.chdir(p.parent)
-    print("\nEND FILE EXECUTION\n")
+    os.chdir(Path(os.getcwd()).parent)
+    print(f"\nEND FILE EXECUTION ({script})\n")
     previous = path
     path = input("If you'd like to run another file, enter its path (or leave blank to run the "
                  "previous file again):\n> ")
