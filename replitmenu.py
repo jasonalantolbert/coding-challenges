@@ -40,15 +40,18 @@ while True:
     try:
         os.chdir(directory)
     except FileNotFoundError:
-        print("It seems that directory doesn't exist. Check your spelling, perhaps?")
+        print("It seems that directory doesn't exist. Check your spelling, perhaps?\n"
+              "Remember, on Repl.it, file paths "
+              "are case sensitive.")
         path = input("> ")
         continue
 
     try:
         file = open(script).read()
     except FileNotFoundError:
-        print("It seems that file doesn't exist. Check your spelling, " + ("perhaps?" if script.endswith("py") else
-                                                                           "and don't forget the .py extension."))
+        print("It seems that file doesn't exist. Check your spelling, " + ("perhaps? " if script.endswith(".py") else
+                                                                           "and don't forget the .py extension.") +
+              "\nRemember, on Repl.it, file paths are case sensitive.")
         p = Path(os.getcwd())
         os.chdir(p.parent)
         path = input("> ")
