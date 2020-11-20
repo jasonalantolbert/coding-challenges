@@ -1,4 +1,4 @@
-# This script provides an interface for end users accessing this repository through repl.it to run
+# This script provides an interface for end users accessing this repository on repl.it to run
 # individual challenges. If you're looking at this repo on GitHub or your local machine, this file probably isn't
 # of any relevance to you.
 
