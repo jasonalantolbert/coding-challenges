@@ -19,7 +19,7 @@ path = input(f"\nType the file path of the Python script you wish to run (e.g. {
              "\n"
              "Currently, unit tests will terminate the program after they run.\n"
              "\n"
-             "File paths are not case sensisitve.\n"
+             "On repl.it, file paths are case sensitive.\n"
              "\n"
              "For more granular control over file execution, clone this repl's GitHub repository to your local "
              "machine.\n"
