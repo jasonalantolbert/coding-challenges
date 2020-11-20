@@ -5,4 +5,6 @@ Some solutions require external dependencies; those dependencies are listed in `
 
 Unless otherwise noted in `instructions.md`, challenges are sourced from [Daily Coding Problem](https://dailycodingproblem.com).
 
+Click the button below to play around with live demos of everything in this repository on [Repl.it](https://repl.it):
+
 [![Run on Repl.it](https://repl.it/badge/github/jasonalantolbert/coding-challenges)](https://repl.it/github/jasonalantolbert/coding-challenges)
