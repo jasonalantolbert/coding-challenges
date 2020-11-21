@@ -81,7 +81,20 @@ while True:
         path = input("> ")
         continue
     else:
-        print(colorama.Fore.GREEN + f"\nBEGIN FILE EXECUTION ({script})\n")
+        if script == "tests.py":
+            print(
+                colorama.Fore.LIGHTRED_EX + "The program will terminate after this file finishes execution. "
+                                            "Continue anyway? [yes/no]")
+            choice = input("> ")
+            if choice in ["no", "n"]:
+                os.chdir(Path(os.getcwd()).parent)
+                path = input("Enter a file path:\n> ")
+                continue
+            else:
+                print(colorama.Fore.GREEN + f"\nBEGIN FILE EXECUTION ({directory}/{script})\n")
+        else:
+            print(colorama.Fore.GREEN + f"\nBEGIN FILE EXECUTION ({script})\n")
+
         exec(file)
 
     os.chdir(Path(os.getcwd()).parent)
