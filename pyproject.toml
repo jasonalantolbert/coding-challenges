@@ -13,4 +13,5 @@ Unipath = "^1.1"
 anytree = "^2.8.0"
 python = "^3.8"
 regex = "^2020.11.13"
+colorama = "^0.4.4"
 [tool.poetry.dev-dependencies]

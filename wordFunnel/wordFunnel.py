@@ -3,6 +3,9 @@ from anytree.walker import Walker
 
 funnel_queue = []  # queue of words to funnel
 
+# creates a set containing all words in enable1.txt
+wordset = set(" ".join(set(open("enable1.txt").readlines())).replace("\n", "").split(sep=" "))
+
 
 def dig(word, parent=None, root=None):
     """
@@ -11,16 +14,9 @@ def dig(word, parent=None, root=None):
     @param parent: In the funnel tree, the parent node from which the word is directly descended.
     @param root: In the funnel tree, the node from which all words are descended.
     """
-    with open("enable1.txt", "r") as enable1:
-        # creates a set containing all words in enable1.txt
-        wordset = set(" ".join(set(enable1.readlines())).replace("\n", "").split(sep=" "))
     if root:
         # indicates that the word is the root of the funnel tree
-        if word in wordset:
-            node = root
-        else:
-            print("That's not a word.")
-            exit()
+        node = root
     else:
         # in the funnel tree, creates for the word a node descended from the its parent word's node
         node = Node(word, parent=parent)
@@ -31,13 +27,15 @@ def dig(word, parent=None, root=None):
         split_word.pop(index)
         child_word = "".join(split_word)
         if child_word in wordset:
-            # noinspection PyUnboundLocalVariable
             funnel_queue.append({"word": child_word, "parent_node": node})
 
 
 def main():
     # requests a word from the user
     query = input("Enter a word:\n> ")
+    if query not in wordset:
+        print("That's not a word.")
+        return
     print("Processing (this could take a few seconds)...\n")
 
     # sets the root node to the user's input

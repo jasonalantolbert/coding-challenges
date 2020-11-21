@@ -6,7 +6,10 @@ import os
 import random
 import re
 
+import colorama
 from unipath import Path
+
+colorama.init(autoreset=True)
 
 
 def get_example_path():
@@ -45,16 +48,21 @@ while True:
     try:
         directory, script = re.split(r"[/\\]", path)
     except ValueError:
-        print(
-            "It seems you entered an incorrectly-formatted file path. Make sure you're including both the directory\n"
-            f"name and file name, separated by a single forward or backward slash (e.g. {get_example_path()})."
-        )
-        path = input("> ")
-        continue
+        if "replitmenu.py" in path:
+            path = input("Very funny. Enter the file path to a challenge script, please.\n> ")
+            continue
+        else:
+            print(
+                "It seems you entered an incorrectly formatted file path. Make sure you're including both the "
+                "directory\n"
+                f"name and file name, separated by a single forward or backward slash (e.g. {get_example_path()})."
+            )
+            path = input("> ")
+            continue
 
     try:
         os.chdir(directory)
-    except FileNotFoundError:
+    except FileNotFoundError or OSError:
         print(
             "It seems that directory doesn't exist. Check your spelling, perhaps?\n"
             "Remember, on Repl.it, file paths "
@@ -73,11 +81,11 @@ while True:
         path = input("> ")
         continue
     else:
-        print(f"\nBEGIN FILE EXECUTION ({script})\n")
+        print(colorama.Fore.GREEN + f"\nBEGIN FILE EXECUTION ({script})\n")
         exec(file)
 
     os.chdir(Path(os.getcwd()).parent)
-    print(f"\nEND FILE EXECUTION ({script})\n")
+    print(colorama.Fore.LIGHTRED_EX + f"\nEND FILE EXECUTION ({script})\n")
     previous = path
     path = input("If you'd like to run another file, enter its path (or leave blank to run the "
                  "previous file again):\n> ")

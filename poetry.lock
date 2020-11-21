@@ -1,10 +1,10 @@
 [[package]]
-category = "main"
-description = "Powerful and Lightweight Python Tree Data Structure.."
 name = "anytree"
+version = "2.8.0"
+description = "Powerful and Lightweight Python Tree Data Structure.."
+category = "main"
 optional = false
 python-versions = "*"
-version = "2.8.0"
 
 [package.dependencies]
 six = ">=1.9.0"
@@ -14,37 +14,50 @@ dev = ["check-manifest"]
 test = ["coverage"]
 
 [[package]]
+name = "colorama"
+version = "0.4.4"
+description = "Cross-platform colored terminal text."
 category = "main"
-description = "Alternative regular expression module, to replace re."
-name = "regex"
 optional = false
-python-versions = "*"
-version = "2020.11.13"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "regex"
+version = "2020.11.13"
+description = "Alternative regular expression module, to replace re."
 category = "main"
-description = "Python 2 and 3 compatibility utilities"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "six"
+version = "1.15.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "1.15.0"
 
 [[package]]
-category = "main"
-description = "Object-oriented alternative to os/os.path/shutil"
 name = "unipath"
+version = "1.1"
+description = "Object-oriented alternative to os/os.path/shutil"
+category = "main"
 optional = false
 python-versions = "*"
-version = "1.1"
 
 [metadata]
-content-hash = "c051347eea325c26034e77b79b2690ca5e8e53813c6b8ae949a1c11f5409f098"
+lock-version = "1.1"
 python-versions = "^3.8"
+content-hash = "0b764bd6c713f65baf592ed8d8a736f2de74ef7b7dd6a8f56b9671c2eb33cde4"
 
 [metadata.files]
 anytree = [
     {file = "anytree-2.8.0-py2.py3-none-any.whl", hash = "sha256:14c55ac77492b11532395049a03b773d14c7e30b22aa012e337b1e983de31521"},
     {file = "anytree-2.8.0.tar.gz", hash = "sha256:3f0f93f355a91bc3e6245319bf4c1d50e3416cc7a35cc1133c1ff38306bbccab"},
+]
+colorama = [
+    {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
+    {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
 regex = [
     {file = "regex-2020.11.13-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:8b882a78c320478b12ff024e81dc7d43c1462aa4a3341c754ee65d857a521f85"},
